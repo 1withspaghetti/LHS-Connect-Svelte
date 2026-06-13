@@ -1,5 +1,5 @@
 import type { ISingleValue } from '$lib/types/basicTypes';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { type Model } from 'mongoose';
 
 export const singleValueSchema = new mongoose.Schema<ISingleValue>(
 	{},
