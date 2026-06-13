@@ -6,14 +6,14 @@ export default async function connect() {
 	mongoose.set('toJSON', {
 		virtuals: true,
 		versionKey: false,
-		transform: function (doc, ret) {
+		transform: function (_doc, ret) {
 			delete ret._id;
 		},
 	});
 	mongoose.set('toObject', {
 		virtuals: true,
 		versionKey: false,
-		transform: function (doc, ret) {
+		transform: function (_doc, ret) {
 			delete ret._id;
 		},
 	});

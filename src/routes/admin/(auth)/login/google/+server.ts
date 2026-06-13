@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 import { google } from '$lib/auth/oauth';
 import { redirect } from '@sveltejs/kit';
 
-export const GET: RequestHandler = async ({ url, cookies }) => {
+export const GET: RequestHandler = async ({ cookies }) => {
 	const state = generateState();
 	const codeVerifier = generateCodeVerifier();
 	const redirectUrl = google.createAuthorizationURL(state, codeVerifier, [

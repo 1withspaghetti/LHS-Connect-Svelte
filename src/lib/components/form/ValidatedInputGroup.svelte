@@ -1,5 +1,5 @@
 <script lang="ts" generics="ID extends string = string">
-	import { ButtonGroup, Input, Label } from 'flowbite-svelte';
+	import { ButtonGroup, Input } from 'flowbite-svelte';
 	import type { InputProps } from 'flowbite-svelte/Input.svelte';
 	import type { LabelProps } from 'flowbite-svelte/Label.svelte';
 	import ValidatedLabel from './util/ValidatedLabel.svelte';

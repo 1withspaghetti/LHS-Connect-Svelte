@@ -26,14 +26,14 @@
 
 <footer class="mt-16 w-full bg-gray-100 p-8 text-gray-500 dark:bg-gray-800 dark:text-gray-500">
 	<div class="flex flex-wrap justify-center gap-8 lg:gap-16">
-		{#each usefulLinks.cards as card}
+		{#each usefulLinks.cards as card (card.id)}
 			<div>
 				<h3 class="mb-2 text-lg font-bold">{card.title}</h3>
 				{#if card.subtitle}
 					<p class="text-xs">{card.subtitle}</p>
 				{/if}
 				<ul class="list-none">
-					{#each card.links as link}
+					{#each card.links as link (link.title)}
 						<li class="mb-1">
 							<a href={link.url} target="_blank" rel="noopener" class="underline">{link.title}</a>
 						</li>

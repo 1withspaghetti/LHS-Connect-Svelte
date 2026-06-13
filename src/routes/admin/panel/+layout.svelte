@@ -17,9 +17,6 @@
 	import {
 		AngleLeftOutline,
 		ArrowLeftToBracketOutline,
-		ChartPieOutline,
-		HomeOutline,
-		LinkOutline,
 		TableRowOutline,
 	} from 'flowbite-svelte-icons';
 	import Menu from 'flowbite-svelte/Menu.svelte';
@@ -88,7 +85,7 @@
 				</SidebarItem>
 			</SidebarGroup>
 			<SidebarGroup border>
-				{#each pages as { label, href, publicHref, icon: IconComponent, permission, children, hidden }, i}
+				{#each pages as { label, href, publicHref, icon: IconComponent, permission, children, hidden } (label)}
 					{#if !hidden && (!permission || Permissions.has(data.session, permission))}
 						{#if children}
 							<SidebarDropdownWrapper {label} isOpen>
@@ -96,7 +93,7 @@
 									slot="icon"
 									class="h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
 								/>
-								{#each children as { label, href }, i}
+								{#each children as { label, href } (label)}
 									<SidebarDropdownItem {label} {href} active={activeUrl === href} />
 								{/each}
 							</SidebarDropdownWrapper>

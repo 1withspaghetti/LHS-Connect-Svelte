@@ -8,7 +8,7 @@
 	import { EyeOutline, EyeSlashOutline } from 'flowbite-svelte-icons';
 
 	interface Props {
-		suffix?: any;
+		suffix?: string;
 		password?: string;
 		onSubmit?: (linkLoginData: { suffix: string; password: string }) => void;
 		onChange?: () => void;

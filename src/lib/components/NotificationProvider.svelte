@@ -65,7 +65,7 @@
 
 {@render children?.()}
 <div class="fixed bottom-0 right-0 space-y-4 p-4">
-	{#each notifications as { message, type }, i}
+	{#each notifications as { message, type } (message)}
 		<Toast color={type === 'success' ? 'green' : 'red'} onclose={() => hide(message)}>
 			<svelte:fragment slot="icon">
 				{#if type === 'success'}

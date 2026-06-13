@@ -98,7 +98,7 @@
 	contentClass="pt-4 bg-white dark:bg-gray-900"
 	defaultClass="flex flex-wrap ltr:mr-2 rtl:ml-2"
 >
-	{#each tabs as schedule, i}
+	{#each tabs as schedule, i (schedule.name)}
 		<TabItem open={i === selectedTab} title={schedule?.name || 'Unknown'}>
 			<BellScheduleTable {schedule} reactive={i === selectedTab} customTime={now} />
 		</TabItem>
@@ -107,7 +107,7 @@
 	{#if upcomingOverrides.length > 0}
 		<TabItem title="Upcoming...">
 			<Accordion multiple>
-				{#each upcomingOverrides as special}
+				{#each upcomingOverrides as special (special.date)}
 					<AccordionItem>
 						<span slot="header">{special.schedule?.name || 'Unknown'} - {special.dateStr}</span>
 						<BellScheduleTable schedule={special.schedule} />

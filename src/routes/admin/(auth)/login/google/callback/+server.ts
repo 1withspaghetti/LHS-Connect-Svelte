@@ -21,7 +21,7 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 	let tokens: OAuth2Tokens;
 	try {
 		tokens = await google.validateAuthorizationCode(code, codeVerifier);
-	} catch (e) {
+	} catch {
 		// Invalid code or client credentials
 		return error(400, 'Invalid code or client credentials, please try again');
 	}

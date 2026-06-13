@@ -1,5 +1,5 @@
 <script lang="ts" generics="ID extends string = string">
-	import { Input, Label, Textarea } from 'flowbite-svelte';
+	import { Textarea } from 'flowbite-svelte';
 	import type { LabelProps } from 'flowbite-svelte/Label.svelte';
 	import type { TextareaProps } from 'flowbite-svelte/Textarea.svelte';
 	import ValidatedLabel from './util/ValidatedLabel.svelte';

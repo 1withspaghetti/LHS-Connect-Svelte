@@ -6,7 +6,6 @@
 		ButtonGroup,
 		Card,
 		Helper,
-		Hr,
 		Input,
 		Label,
 		Select,

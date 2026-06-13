@@ -44,7 +44,7 @@
 						return;
 					}
 
-					const row = results.data as any[];
+					const row = results.data as string[];
 
 					if (row[0] == 'Club' && line == 1) return; // Skip header
 					if (row.map((v: string) => v.trim()).filter((v) => !!v).length < 4) return; // Skip empty-ish rows

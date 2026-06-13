@@ -40,7 +40,7 @@ export async function createSession(
  * @param token The session token to look for
  * @returns ISession if the session is valid, null otherwise
  */
-export async function validateAndRenewSession(token: any): Promise<ISession | null> {
+export async function validateAndRenewSession(token: string | undefined): Promise<ISession | null> {
 	if (!token || typeof token !== 'string' || token.length !== 32) {
 		return null;
 	}
@@ -75,7 +75,7 @@ export async function validateAndRenewSession(token: any): Promise<ISession | nu
  * @param token The session token to delete
  * @returns true if the session was deleted, false otherwise (e.g. if the token is invalid)
  */
-export async function deleteSession(token: any): Promise<boolean> {
+export async function deleteSession(token: string | undefined): Promise<boolean> {
 	if (typeof token !== 'string' || token.length !== 32) {
 		return false;
 	}

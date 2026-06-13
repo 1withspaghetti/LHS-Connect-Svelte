@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ChangeEventHandler, DragEventHandler, HTMLInputAttributes } from 'svelte/elements';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	interface Props extends HTMLInputAttributes {
 		helperText?: string;

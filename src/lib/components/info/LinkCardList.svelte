@@ -13,7 +13,7 @@
 
 <SectionHeader {title} updatedAt={data.cards} />
 <div class="flex flex-wrap items-start justify-center gap-4">
-	{#each data.cards as card}
+	{#each data.cards as card (card.id)}
 		<LinkCardContent {card} />
 	{/each}
 </div>
