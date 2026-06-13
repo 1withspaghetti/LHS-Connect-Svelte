@@ -1,4 +1,4 @@
-import { object, number, ObjectSchema } from 'yup';
+import { object, number, type ObjectSchema } from 'yup';
 import type { IAdminUserUpdate } from './types';
 import { Permission } from '$lib/auth/permissions';
 

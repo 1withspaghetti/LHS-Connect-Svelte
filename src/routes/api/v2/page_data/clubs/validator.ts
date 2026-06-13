@@ -1,5 +1,5 @@
 import type { WithoutID } from '$lib/types/basicTypes';
-import { object, ObjectSchema, string } from 'yup';
+import { object, type ObjectSchema, string } from 'yup';
 import type { IClub } from './types';
 
 export const INSTAGRAM_REGEX = /^[a-zA-Z0-9._]*$/;

@@ -1,4 +1,4 @@
-import { object, ObjectSchema, string } from 'yup';
+import { object, type ObjectSchema, string } from 'yup';
 import type { IAnnouncement } from './types';
 import type { WithoutID } from '$lib/types/basicTypes';
 

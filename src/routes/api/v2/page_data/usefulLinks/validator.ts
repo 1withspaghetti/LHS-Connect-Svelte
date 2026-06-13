@@ -1,5 +1,5 @@
 import type { WithoutID } from '$lib/types/basicTypes';
-import { string, object, array, ObjectSchema } from 'yup';
+import { string, object, array, type ObjectSchema } from 'yup';
 import type { ILinkCard } from './types';
 
 export const linkCardLinkNameValidator = string().required().max(64).label('Name');

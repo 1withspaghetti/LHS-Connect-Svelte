@@ -1,5 +1,5 @@
 import type { WithoutID } from '$lib/types/basicTypes';
-import { object, ObjectSchema, string } from 'yup';
+import { object, type ObjectSchema, string } from 'yup';
 import type { IBulletinBoardNote } from './types';
 import urlRegex from '$lib/validation/url';
 
