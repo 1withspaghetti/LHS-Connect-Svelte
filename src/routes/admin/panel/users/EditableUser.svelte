@@ -32,7 +32,7 @@
 	<TableBodyCell tdClass="p-4 font-medium max-w-sm">{user.email}</TableBodyCell>
 	<TableBodyCell tdClass="p-4 font-medium max-w-sm">
 		<div class="flex flex-wrap gap-2">
-			{#each selectedPermissions as p}
+			{#each selectedPermissions as p (p)}
 				<Badge large color="dark">{Permission[p]}</Badge>
 			{/each}
 		</div>

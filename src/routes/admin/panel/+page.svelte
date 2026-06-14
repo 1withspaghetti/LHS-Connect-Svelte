@@ -43,7 +43,7 @@
 		<SectionHeader title="Dashboard" />
 
 		<div class="mb-12 flex w-full flex-wrap items-start justify-center gap-6 md:justify-start">
-			{#each pages as page, i}
+			{#each pages as page (page.label)}
 				{@const IconComponent = page.icon}
 				{#if !page.hidden && (!page.permission || Permissions.has(data.session, page.permission)) && !(page.href == '/admin/panel')}
 					<Card size="sm">
@@ -53,7 +53,7 @@
 						</h5>
 						{#if page.children}
 							<Listgroup active class="border-0 dark:!bg-transparent">
-								{#each page.children as item}
+								{#each page.children as item (item.label)}
 									<ListgroupItem active href={page.href} on:click={() => goto(item.href)}>
 										{item.label}
 									</ListgroupItem>

@@ -61,7 +61,7 @@
 		</TableHead>
 		<TableBody>
 			<TableBodyRow>
-				{#each defaults as _, i}
+				{#each defaults, i (i)}
 					<TableBodyCell class="px-1">
 						<Select
 							bind:value={defaults[i]}

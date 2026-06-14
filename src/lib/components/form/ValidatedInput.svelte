@@ -1,10 +1,10 @@
 <script lang="ts" generics="ID extends string = string">
-	import { Input, Label } from 'flowbite-svelte';
+	import { Input } from 'flowbite-svelte';
 	import type { InputProps } from 'flowbite-svelte/Input.svelte';
 	import type { LabelProps } from 'flowbite-svelte/Label.svelte';
 	import ValidatedLabel from './util/ValidatedLabel.svelte';
 	import ValidatedHelper from './util/ValidatedHelper.svelte';
-	import { ObjectSchema, type StringSchema, ValidationError } from 'yup';
+	import { type ObjectSchema, type StringSchema, ValidationError } from 'yup';
 
 	interface Props {
 		/**

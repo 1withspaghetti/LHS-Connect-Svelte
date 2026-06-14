@@ -9,7 +9,7 @@ import { idArrayValidator, idValidator } from '$lib/validation/objectId';
 type ListType = 'listValue' | 'orderedListValue' | 'singleValue';
 
 // The is a type that represents the function signature for the endpoint groups
-type EndpointsType<RouteParams extends Partial<Record<string, string>>> = <
+type EndpointsType<RouteParams extends Record<string, string>> = <
 	TRequestEvent extends RequestEvent<RouteParams, any> = RequestEvent<RouteParams, any>,
 	TModelType extends object = any,
 >(
@@ -223,7 +223,7 @@ export const editIndividualItemEndpoints: EndpointsType<{ id: string }> = (
  * export { GET, POST } from editOrderEndpoints("listValue", ClubModel, clubValidator);
  * ```
  */
-export const editOrderEndpoints: EndpointsType<{}> = (type, model, validator) => ({
+export const editOrderEndpoints: EndpointsType<{}> = (type, model) => ({
 	// Fetching all documents
 	GET: async ({ locals }) => {
 		if (!locals.permissions.has(Permission.VIEW))

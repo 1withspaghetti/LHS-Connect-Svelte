@@ -92,10 +92,10 @@
 
 		<SectionHeader title="Schedule Preview" />
 		<div class="mb-8 flex items-center">
-			<Label for={`preview-time`} class="mr-4 text-xl">At Time:</Label>
+			<Label for="preview-time" class="mr-4 text-xl">At Time:</Label>
 			<input
-				id={`preview-time`}
-				name={`preview-time`}
+				id="preview-time"
+				name="preview-time"
 				type="datetime-local"
 				step="60"
 				bind:value={previewTime}

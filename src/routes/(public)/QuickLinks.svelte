@@ -63,7 +63,7 @@
 </script>
 
 <div class="my-2 flex overflow-x-auto">
-	{#each links as link}
+	{#each links as link (link.name)}
 		<a
 			href={link.url}
 			target="_blank"

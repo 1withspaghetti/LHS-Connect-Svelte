@@ -3,7 +3,6 @@
 	import SectionHeader from '$components/SectionHeader.svelte';
 	import adminApiClient from '$lib/util/adminApiClient';
 	import {
-		A,
 		Input,
 		Label,
 		Pagination,

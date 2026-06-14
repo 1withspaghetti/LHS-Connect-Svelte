@@ -1,19 +1,19 @@
 import type { ISingleValue } from '$lib/types/basicTypes';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { type Model } from 'mongoose';
 
 export const singleValueSchema = new mongoose.Schema<ISingleValue>(
 	{},
 	{
 		toJSON: {
 			virtuals: true,
-			transform: function (doc, ret) {
+			transform: function (_doc, ret) {
 				delete ret.__t;
 				delete ret._id;
 			},
 		},
 		toObject: {
 			virtuals: true,
-			transform: function (doc, ret) {
+			transform: function (_doc, ret) {
 				delete ret.__t;
 				delete ret._id;
 			},

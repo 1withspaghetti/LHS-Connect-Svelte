@@ -102,7 +102,7 @@ export class Permissions {
 	 * @returns this, for chaining
 	 */
 	public strip(): Permissions {
-		let original = this.permissions;
+		const original = this.permissions;
 		this.permissions = 0;
 		for (let i = 0; i < PermissionValues.length; i++) {
 			if ((original & PermissionValues[i]) === PermissionValues[i]) {

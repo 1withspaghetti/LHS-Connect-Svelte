@@ -63,7 +63,7 @@
 
 <Table class="table-fixed" divClass="relative mx-auto border dark:border-gray-700" striped>
 	<TableBody tableBodyClass="divide-y text-center">
-		{#each schedule?.periods || [] as period, i}
+		{#each schedule?.periods || [] as period, i (period.name)}
 			<TableBodyRow class={getRowClass(i, reactive, customTime)}>
 				<TableBodyCell>
 					{period.name}

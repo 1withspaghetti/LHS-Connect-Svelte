@@ -24,7 +24,7 @@
 		/**
 		 * Whether the input is required or not, will render a red asterisk if true
 		 */
-		required?: Boolean;
+		required?: boolean;
 		children?: Snippet;
 	}
 
