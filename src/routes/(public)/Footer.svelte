@@ -55,7 +55,7 @@
 		<ExclamationCircleOutline class="inline-block" />
 		<a href="/about?type=report#contact" class="underline">Report Incorrect Information</a>
 		<span class="mx-2">•</span>
-		<DiscordSolid class="inline-block" />
+		<DiscordSolid class="inline-block h-6 w-6" />
 		<a href="/discord" target="_blank" class="underline">Discord</a>
 		<span class="mx-2">•</span>
 		<CogOutline class="inline-block" />
