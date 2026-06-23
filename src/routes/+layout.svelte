@@ -21,6 +21,20 @@
 			} else {
 				document.documentElement.classList.remove('dark');
 			}
+		} else {
+			if (localStorage.getItem('theme') === null) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+					$theme = 'light';
+				} else {
+					$theme = 'dark';
+				}
+			} else {
+				if (localStorage.getItem('theme') === 'light') {
+					$theme = 'light';
+				} else {
+					$theme = 'dark';
+				}
+			}
 		}
 	});
 </script>

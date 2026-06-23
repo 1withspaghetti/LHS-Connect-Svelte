@@ -15,10 +15,17 @@
 		/>
 
 		<script>
-			// Prevent flash of light theme on load :)
-			if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+			if (localStorage.getItem('theme') === null) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					// Prevent flash of light theme on load
+					document.documentElement.classList.add('dark');
+				}
+			} else if (localStorage.getItem('theme') === 'dark')
+				// Prevent flash of light theme on load
+				document.documentElement.classList.add('dark');
 		</script>
 	</head>
+
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>

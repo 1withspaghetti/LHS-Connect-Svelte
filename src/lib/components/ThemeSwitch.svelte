@@ -11,6 +11,13 @@
 	let theme = getContext<ThemeContext>('theme');
 
 	function handleClick() {
+		if ($theme === undefined) {
+			let browserDefault: 'light' | 'dark' =
+				window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+					? 'light'
+					: 'dark';
+			theme.update((value) => browserDefault);
+		}
 		theme.update((value) => (value === 'dark' ? 'light' : 'dark'));
 	}
 </script>
