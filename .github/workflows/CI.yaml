@@ -1,0 +1,32 @@
+name: CI
+on: [push]
+jobs:
+  Lint-and-type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - name: Create .env
+        run: cat .env.example > .env
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: Install packages
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Type check
+        run: pnpm check
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - name: Create .env
+        run: cat .env.example > .env
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: Install packages
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build

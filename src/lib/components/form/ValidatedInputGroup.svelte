@@ -5,7 +5,7 @@
 	import ValidatedLabel from './util/ValidatedLabel.svelte';
 	import ValidatedHelper from './util/ValidatedHelper.svelte';
 	import type { ButtonGroupProps } from 'flowbite-svelte/ButtonGroup.svelte';
-	import { ObjectSchema, type StringSchema, ValidationError } from 'yup';
+	import { type ObjectSchema, type StringSchema, ValidationError } from 'yup';
 
 	interface Props {
 		/**

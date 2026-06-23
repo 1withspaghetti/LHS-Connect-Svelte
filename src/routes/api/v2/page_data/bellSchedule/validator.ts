@@ -1,5 +1,5 @@
 import type { WithoutID } from '$lib/types/basicTypes';
-import { string, object, boolean, array, number, ObjectSchema } from 'yup';
+import { string, object, boolean, array, number, type ObjectSchema } from 'yup';
 import type { IBellSchedule, IBellScheduleDefaults, IBellScheduleOverride } from './types';
 import { idArrayValidator, idValidator } from '$lib/validation/objectId';
 
