@@ -11,10 +11,12 @@
 				href="https://seattleschools-my.sharepoint.com/:w:/g/personal/1rcmclain_seattleschools_org/IQDdTy6CDx8_TatHAPkj-TrbARQ2VadEAwxXiliuI6vu_CI?e=nOO3vJ"
 				text="discord link (access restricted)"
 			/>
-        </div>
-        <p class="text-center">
-			 the link is only accessible to sps students and staff. If you are not a student or staff please use the
-            <a href="/about#contact" class="underline">contact form</a> to request access making sure to add your email.
+		</div>
+		<p class="text-center">
+			the link is only accessible to sps students and staff. If you are not a student or staff
+			please use the
+			<a href="/about#contact" class="underline">contact form</a> to request access making sure to add
+			your email.
 		</p>
 	</div>
 </div>
