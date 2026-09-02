@@ -14,7 +14,7 @@
         </div>
         <p class="text-center">
 			 the link is only accessible to sps students and staff. If you are not a student or staff please use the
-			<a href="/about#contact" class="underline">contact form</a> making sure to add your email.
+            <a href="/about#contact" class="underline">contact form</a> to request access making sure to add your email.
 		</p>
 	</div>
 </div>
