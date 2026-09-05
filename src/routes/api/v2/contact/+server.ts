@@ -1,5 +1,5 @@
 import { ValidationError } from 'yup';
-import { feedbackTypes } from '../../../(public)/about/ContactForm.svelte';
+import { feedbackTypes } from '../../../../lib/components/ContactForm.svelte';
 import type { RequestHandler } from './$types';
 import { contactUsValidator } from './validator';
 import { ContactUsMessage } from './model';
