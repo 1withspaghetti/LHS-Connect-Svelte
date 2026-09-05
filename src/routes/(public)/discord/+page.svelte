@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { discordRequestValidator } from '$api/contact/validator';
+	import ContactForm from '$components/ContactForm.svelte';
 	import ExternalLink from '$components/ExternalLink.svelte';
 	import SectionHeader from '$components/SectionHeader.svelte';
 </script>
@@ -13,10 +15,9 @@
 			/>
 		</div>
 		<p class="text-center">
-			the link is only accessible to sps students and staff. If you are not a student or staff
-			please use the
-			<a href="/about#contact" class="underline">contact form</a> to request access making sure to add
-			your email.
+			If you are outside of SPS please use the form below to request access to the server
 		</p>
+		<SectionHeader title="Request access" />
+		<ContactForm emailRequired feedbackType="discord" validator={discordRequestValidator} />
 	</div>
 </div>

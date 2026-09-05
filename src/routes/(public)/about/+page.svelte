@@ -180,6 +180,7 @@
 	</div>
 
 	<div id="contact" class="w-full max-w-4xl">
+		<SectionHeader title="Contact Us" />
 		<ContactForm />
 	</div>
 
