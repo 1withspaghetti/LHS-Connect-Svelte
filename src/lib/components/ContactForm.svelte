@@ -17,7 +17,6 @@
 	import ValidatedSelect from '$components/form/ValidatedSelect.svelte';
 	import ValidatedTextarea from '$components/form/ValidatedTextarea.svelte';
 	import { getNotificationContext } from '$components/NotificationProvider.svelte';
-	import SectionHeader from '$components/SectionHeader.svelte';
 	import apiRequest from '$lib/util/apiClient';
 	import { Button, Spinner, type SelectOptionType } from 'flowbite-svelte';
 	import { PaperPlaneOutline } from 'flowbite-svelte-icons';
