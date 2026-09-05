@@ -83,32 +83,32 @@
 	}
 </script>
 
-<form {onsubmit}>
-	<div class={feedbackType === undefined ? 'grid gap-6 md:grid-cols-2' : ''}>
-		<div class="mb-6">
-			<ValidatedInput
-				bind:this={nameInput}
-				id="name"
-				label="Name"
-				bind:value={name}
-				validatorObject={validator}
-				inputProps={{ type: 'text', placeholder: 'John Doe', autocomplete: 'name' }}
-			/>
-		</div>
-		{#if feedbackType === undefined}
-			<div class="mb-6">
-				<ValidatedSelect
-					bind:this={typeInput}
-					id="type"
-					label="Category"
-					bind:value={type}
-					visuallyRequired
-					validatorObject={validator}
-					selectProps={{ items: feedbackTypes, placeholder: 'Select a category...' }}
-				/>
-			</div>
-		{/if}
+{#snippet nameField()}
+	<div class="mb-6">
+		<ValidatedInput
+			bind:this={nameInput}
+			id="name"
+			label="Name"
+			bind:value={name}
+			validatorObject={validator}
+			inputProps={{ type: 'text', placeholder: 'John Doe', autocomplete: 'name' }}
+		/>
 	</div>
+{/snippet}
+{#snippet feedbackTypeField()}
+	<div class="mb-6">
+		<ValidatedSelect
+			bind:this={typeInput}
+			id="type"
+			label="Category"
+			bind:value={type}
+			visuallyRequired
+			validatorObject={validator}
+			selectProps={{ items: feedbackTypes, placeholder: 'Select a category...' }}
+		/>
+	</div>
+{/snippet}
+{#snippet emailField()}
 	<div class="mb-6">
 		<ValidatedInput
 			bind:this={emailInput}
@@ -120,6 +120,21 @@
 			inputProps={{ type: 'email', placeholder: 'name@email.com' }}
 		/>
 	</div>
+{/snippet}
+
+<form {onsubmit}>
+	<div class="grid gap-6 md:grid-cols-2">
+		{#if feedbackType === undefined}
+			{@render nameField()}
+			{@render feedbackTypeField()}
+		{:else}
+			{@render nameField()}
+			{@render emailField()}
+		{/if}
+	</div>
+	{#if feedbackType === undefined}
+		{@render emailField()}
+	{/if}
 	<div class="mb-6">
 		<ValidatedTextarea
 			bind:this={messageInput}
