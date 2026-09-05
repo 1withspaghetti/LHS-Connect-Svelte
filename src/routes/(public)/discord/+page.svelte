@@ -14,7 +14,7 @@
 				text="discord link (access restricted)"
 			/>
 		</div>
-		<p class="text-center">
+		<p class="mb-4">
 			If you are outside of SPS please use the form below to request access to the server
 		</p>
 		<SectionHeader title="Request access" />
