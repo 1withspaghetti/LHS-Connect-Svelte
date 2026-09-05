@@ -7,7 +7,7 @@
 	import nathanAvatar from '$assets/images/avatars/nathan.jpg?enhanced';
 	import chainlynxAvatar from '$assets/images/avatars/chainlynx.webp?enhanced';
 	import { DiscordSolid, InstagramSolid, GithubSolid, MailBoxOutline } from 'flowbite-svelte-icons';
-	import ContactForm from './ContactForm.svelte';
+	import ContactForm from '../../../lib/components/ContactForm.svelte';
 	import ExternalLink from '$components/ExternalLink.svelte';
 
 	let copyTextModal = $state(false);
