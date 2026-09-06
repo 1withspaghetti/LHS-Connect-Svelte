@@ -8,6 +8,10 @@
 	import { getNotificationContext } from '$components/NotificationProvider.svelte';
 	import type { IClub } from '$api/page_data/clubs/types';
 	import type { WithoutID } from '$lib/types/basicTypes';
+	/* SAMPLE DATA:
+https://lhs.cx/current-clubs
+https://lhs.cx/old-clubs
+*/
 
 	interface Props {
 		onSubmit: (clubs: WithoutID<IClub>[]) => void;
@@ -52,10 +56,37 @@
 
 					const row = results.data as any[];
 					const firstHeaderCell: string = 'Which student group are you submitting information for?';
+					if (/*row[0] == firstHeaderCell && */ line == 1) return; // Skip header. Commented out because header text was still getting through, idfk but if they change their data stucture we have bigger problems anyway.
 					if (row[0] == firstHeaderCell && line == 1) return; // Skip header. Commented out because header text was still getting through, idfk but if they change their data stucture we have bigger problems anyway.
 					if (row.map((v: string) => v.trim()).filter((v) => !!v).length < 4) return; // Skip rows with less than 4 filled values
 
 					// Search for instagram username
+					const rawInsta = (row[8] ?? '').trim();
+					const noInstagramPattern: RegExp = /^(n\/a|none|no)?$/i;
+					let insta = 'N/A';
+					if (rawInsta && !noInstagramPattern.test(rawInsta)) {
+						const instaUrlSearch = /instagram\.com\/([a-zA-Z\d._]+)/i.exec(rawInsta);
+						const instaSearch = /@?([a-zA-Z\d._]+)/i.exec(rawInsta);
+						if (instaUrlSearch) {
+							insta = instaUrlSearch[1];
+						} else if (instaSearch) {
+							insta = instaSearch[1];
+						}
+					}
+/*					console.log(
+						'name: ' +
+							row[0].replace('\n', ' ').trim() +
+							', dayTime: ' +
+							row[4].replace('\n', ' ').trim() +
+							', location: ' +
+							row[3].replace('\n', ' ').trim() +
+							', advisor: ' +
+							row[7].replace('\n', ' ').trim() +
+							', insta: ' +
+							insta.replace('@', '') +
+							', desc: ' +
+							row[6].replace('\n', ' ').trim()
+					); */
 					const rawInsta = (row[instaField] ?? '').trim();
 					const noInstagramPattern: RegExp = /^(n\/a|none|no)?$/i;
 					let insta = 'N/A';
@@ -91,6 +122,11 @@
 </script>
 
 <div class="flex items-center gap-2">
+	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}
+		>Auto Import <InfoCircleOutline class="ml-4 h-6 w-6 text-gray-700 dark:text-gray-400" />
+		<Tooltip
+			>Import clubs from a CSV file, clicking this button will open a menu with instructions</Tooltip
+		></GradientButton
 	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}
 		>Auto Import <InfoCircleOutline class="ml-4 h-6 w-6 text-gray-700 dark:text-gray-400" />
 		<Tooltip
