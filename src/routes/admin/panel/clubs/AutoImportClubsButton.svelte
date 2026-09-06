@@ -61,7 +61,7 @@ https://lhs.cx/old-clubs
 					if (instaSearch != null) insta = instaSearch[1];
 					if (instaUrlSearch != null) insta = instaUrlSearch[1];
 					if (noInstagramPattern.test(row[8])) insta = "N/A";
-					console.log("name: " +  row[0].replace('\n', ' ').trim() + ", dayTime: " + row[4].replace('\n', ' ').trim() + ", location: " + row[3].replace('\n', ' ').trim() + ", advisor: " + row[7].replace('\n', ' ').trim() + ", insta: " + insta.replace('@', '') + ", desc: " + row[6].replace('\n', ' ').trim());
+//					console.log("name: " +  row[0].replace('\n', ' ').trim() + ", dayTime: " + row[4].replace('\n', ' ').trim() + ", location: " + row[3].replace('\n', ' ').trim() + ", advisor: " + row[7].replace('\n', ' ').trim() + ", insta: " + insta.replace('@', '') + ", desc: " + row[6].replace('\n', ' ').trim());
 					records.push({
 						name: row[0].replace('\n', ' ').trim() || 'Unknown',
 						dayTime: row[4].replace('\n', ' ').trim() || 'Unknown',
