@@ -5,7 +5,7 @@ import type { IListValue } from '$lib/types/basicTypes';
  */
 export interface IClub extends IListValue {
 	name: string;
-	dayTime: string;
+	dayAndTime: string;
 	location: string;
 	advisor: string;
 	instagram?: string; // No '@' symbol, just the username

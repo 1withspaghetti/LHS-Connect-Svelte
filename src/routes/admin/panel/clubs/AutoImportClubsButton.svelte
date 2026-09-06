@@ -8,10 +8,7 @@
 	import { getNotificationContext } from '$components/NotificationProvider.svelte';
 	import type { IClub } from '$api/page_data/clubs/types';
 	import type { WithoutID } from '$lib/types/basicTypes';
-/* SAMPLE DATA:
-https://lhs.cx/current-clubs
-https://lhs.cx/old-clubs
-*/
+
 	interface Props {
 		onSubmit: (clubs: WithoutID<IClub>[]) => void;
 	}
@@ -38,6 +35,12 @@ https://lhs.cx/old-clubs
 			let line = 0;
 			Papa.parse(strData, {
 				step(results) {
+					const nameField: number = 0;
+					const dayAndTimeField: number = 4;
+					const locationField: number = 3;
+					const advisorField: number = 7;
+					const instaField: number = 0;
+					const descField: number = 6;
 					line++;
 					if (start !== undefined && line < parseInt(start)) return;
 					if (end !== undefined && line > parseInt(end)) return;
@@ -49,26 +52,30 @@ https://lhs.cx/old-clubs
 
 					const row = results.data as any[];
 					const firstHeaderCell: string = 'Which student group are you submitting information for?';
-					if (/*row[0] == firstHeaderCell && */line == 1) return; // Skip header. Commented out because header text was still getting through, idfk but if they change their data stucture we have bigger problems anyway.
+					if (row[0] == firstHeaderCell && line == 1) return; // Skip header. Commented out because header text was still getting through, idfk but if they change their data stucture we have bigger problems anyway.
 					if (row.map((v: string) => v.trim()).filter((v) => !!v).length < 4) return; // Skip rows with less than 4 filled values
 
 					// Search for instagram username
-//					console.log('raw row[8]:' + row[8]);
-					var instaSearch = /@?([a-zA-Z\d._]+)( ?- ?insta(gram)?)?/gim.exec(row[8]);
-					var instaUrlSearch = /instagram\.com\/([a-zA-Z\d._]+)/gim.exec(row[8]);
-					const noInstagramPattern: RegExp = /^(n\/a)?\s*$/i;
-					var insta = '';
-					if (instaSearch != null) insta = instaSearch[1];
-					if (instaUrlSearch != null) insta = instaUrlSearch[1];
-					if (noInstagramPattern.test(row[8])) insta = "N/A";
-					console.log("name: " +  row[0].replace('\n', ' ').trim() + ", dayTime: " + row[4].replace('\n', ' ').trim() + ", location: " + row[3].replace('\n', ' ').trim() + ", advisor: " + row[7].replace('\n', ' ').trim() + ", insta: " + insta.replace('@', '') + ", desc: " + row[6].replace('\n', ' ').trim());
+					const rawInsta = (row[instaField] ?? '').trim();
+					const noInstagramPattern: RegExp = /^(n\/a|none|no)?$/i;
+					let insta = 'N/A';
+					if (rawInsta && !noInstagramPattern.test(rawInsta)) {
+						const instaUrlSearch = /instagram\.com\/([A-Z\d._]+)/i.exec(rawInsta);
+						const instaSearch = /@?([a-zA-Z\d._]+)/i.exec(rawInsta);
+						if (instaUrlSearch) {
+							insta = instaUrlSearch[1];
+						} else if (instaSearch) {
+							insta = instaSearch[1];
+						}
+					}
+					
 					records.push({
-						name: row[0].replace('\n', ' ').trim() || 'Unknown',
-						dayTime: row[4].replace('\n', ' ').trim() || 'Unknown',
-						location: row[3].replace('\n', ' ').trim() || 'Unknown',
-						advisor: row[7].replace('\n', ' ').trim() || 'Unknown',
+						name: row[nameField].replace('\n', ' ').trim() || 'Unknown',
+						dayAndTime: row[dayAndTimeField].replace('\n', ' ').trim() || 'Unknown',
+						location: row[locationField].replace('\n', ' ').trim() || 'Unknown',
+						advisor: row[advisorField].replace('\n', ' ').trim() || 'Unknown',
 						instagram: insta.replace('@', '') || undefined,
-						desc: row[6].replace('\n', ' ').trim() || undefined,
+						desc: row[descField].replace('\n', ' ').trim() || undefined,
 					});
 				},
 				complete() {
@@ -84,12 +91,12 @@ https://lhs.cx/old-clubs
 </script>
 
 <div class="flex items-center gap-2">
-	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}>Auto Import <InfoCircleOutline class="h-6 w-6 ml-4 text-gray-700 dark:text-gray-400" />
-	<Tooltip
-		>Import clubs from a CSV file, clicking this button will open a menu with instructions</Tooltip
-	></GradientButton
+	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}
+		>Auto Import <InfoCircleOutline class="ml-4 h-6 w-6 text-gray-700 dark:text-gray-400" />
+		<Tooltip
+			>Import clubs from a CSV file, clicking this button will open a menu with instructions</Tooltip
+		></GradientButton
 	>
-	
 </div>
 
 <Modal bind:open={modalOpen} size="lg" autoclose={false} title="Auto Import From CSV">

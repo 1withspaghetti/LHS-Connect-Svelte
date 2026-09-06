@@ -15,14 +15,14 @@
 	let { club, onSubmit: submit, onCancel: cancel }: Props = $props();
 
 	let name = $state(club.name);
-	let dayTime = $state(club.dayTime);
+	let dayAndTime = $state(club.dayAndTime);
 	let location = $state(club.location);
 	let advisor = $state(club.advisor);
 	let instagram = $state(club.instagram);
 	let desc = $state(club.desc);
 
 	let nameInput: ValidatedInput<'name'> | undefined = $state();
-	let dayTimeInput: ValidatedInput<'dayTime'> | undefined = $state();
+	let dayAndTimeInput: ValidatedInput<'dayAndTime'> | undefined = $state();
 	let locationInput: ValidatedInput<'location'> | undefined = $state();
 	let advisorInput: ValidatedInput<'advisor'> | undefined = $state();
 	let instagramInput: ValidatedInput<'instagram'> | undefined = $state();
@@ -32,7 +32,7 @@
 		e.preventDefault();
 		const club = {
 			name: await nameInput!.validate(),
-			dayTime: await dayTimeInput!.validate(),
+			dayAndTime: await dayAndTimeInput!.validate(),
 			location: await locationInput!.validate(),
 			advisor: await advisorInput!.validate(),
 			instagram: await instagramInput!.validate(),
@@ -58,10 +58,10 @@
 	</div>
 	<div>
 		<ValidatedInput
-			bind:this={dayTimeInput}
-			id="dayTime"
+			bind:this={dayAndTimeInput}
+			id="dayAndTime"
 			label="Day and Time"
-			bind:value={dayTime}
+			bind:value={dayAndTime}
 			validatorObject={clubValidator}
 			visuallyRequired
 		/>

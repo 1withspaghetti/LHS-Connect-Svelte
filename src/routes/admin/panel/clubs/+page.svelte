@@ -10,7 +10,6 @@
 		TableBodyCell,
 		Popover,
 		Modal,
-		P,
 	} from 'flowbite-svelte';
 	import AutoImportClubsButton from './AutoImportClubsButton.svelte';
 	import type { PageData } from './$types';
@@ -40,7 +39,7 @@
 			items={data.results}
 			generateNewItem={() => ({
 				name: 'New Club',
-				dayTime: 'unknown',
+				dayAndTime: 'unknown',
 				location: 'unknown',
 				advisor: 'unknown',
 			})}
@@ -58,7 +57,7 @@
 				<Table striped shadow class="min-w-[1024px] table-fixed">
 					<TableHead>
 						<TableHeadCell>Name</TableHeadCell>
-						<TableHeadCell>Day and Time</TableHeadCell>
+						<TableHeadCell>Day & Time</TableHeadCell>
 						<TableHeadCell>Location</TableHeadCell>
 						<TableHeadCell>Advisor</TableHeadCell>
 						<TableHeadCell>Instagram</TableHeadCell>
@@ -77,7 +76,7 @@
 									{/if}
 								</TableBodyCell>
 								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm"
-									>{item.dayTime}</TableBodyCell
+									>{item.dayAndTime}</TableBodyCell
 								>
 								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm"
 									>{item.location}</TableBodyCell

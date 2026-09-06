@@ -6,7 +6,7 @@ export const INSTAGRAM_REGEX = /^(?:[a-zA-Z0-9._]+|N\/A)$/;
 
 export const clubValidator: ObjectSchema<WithoutID<IClub>> = object({
 	name: string().required().max(250),
-	dayTime: string().required().max(250),
+	dayAndTime: string().required().max(250),
 	location: string().required().max(250),
 	advisor: string().required().max(250),
 	instagram: string()

@@ -28,7 +28,7 @@
 			keys: [
 				{ name: 'name', weight: 5 },
 				{ name: 'desc', weight: 4 },
-				{ name: 'dayTime', weight: 1 },
+				{ name: 'dayAndTime', weight: 1 },
 				{ name: 'location', weight: 1 },
 				{ name: 'advisor', weight: 1 },
 			],
@@ -68,7 +68,7 @@
 						</Popover>
 					{/if}
 				</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.dayTime}</TableBodyCell>
+				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.dayAndTime}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.location}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.advisor}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">
