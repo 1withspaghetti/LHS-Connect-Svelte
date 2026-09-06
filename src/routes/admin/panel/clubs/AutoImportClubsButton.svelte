@@ -8,6 +8,10 @@
 	import { getNotificationContext } from '$components/NotificationProvider.svelte';
 	import type { IClub } from '$api/page_data/clubs/types';
 	import type { WithoutID } from '$lib/types/basicTypes';
+	/* SAMPLE DATA:
+https://lhs.cx/current-clubs
+https://lhs.cx/old-clubs
+*/
 
 	interface Props {
 		onSubmit: (clubs: WithoutID<IClub>[]) => void;
@@ -35,6 +39,12 @@
 			let line = 0;
 			Papa.parse(strData, {
 				step(results) {
+					const nameField: number = 0;
+					const dayAndTimeField: number = 4;
+					const locationField: number = 3;
+					const advisorField: number = 7;
+					const instaField: number = 8;
+					const descField: number = 6;
 					line++;
 					if (start !== undefined && line < parseInt(start)) return;
 					if (end !== undefined && line > parseInt(end)) return;
@@ -45,25 +55,30 @@
 					}
 
 					const row = results.data as any[];
-
-					if (row[0] == 'Club' && line == 1) return; // Skip header
-					if (row.map((v: string) => v.trim()).filter((v) => !!v).length < 4) return; // Skip empty-ish rows
-
-					// Search for instagram username
-					var instaSearch = /@?([a-zA-Z\d._]+)( ?- ?insta(gram)?)?/gim.exec(row[5]);
-					var instaUrlSearch = /instagram\.com\/([a-zA-Z\d._]+)/gim.exec(row[5]);
-					var insta = '';
-					if (instaSearch != null) insta = instaSearch[1];
-					if (instaUrlSearch != null) insta = instaUrlSearch[1];
-
+					const firstHeaderCell: string = 'Which student group are you submitting information for? (only ONE person submits for the club)';
+					if (row[0] == firstHeaderCell && line == 1) return; // Skip header. 
+					if (line == 1) return; // Skip header (always skip line 1 regardless of content)
+					if (row.map((v: string) => v.trim()).filter((v) => !!v).length < 4) return; // Skip rows with less than 4 filled values
+					const rawInsta = (row[instaField] ?? '').trim();
+					const noInstagramPattern: RegExp = /^(n\/a|none|no)?$/i;
+					let insta = 'N/A';
+					if (rawInsta && !noInstagramPattern.test(rawInsta)) {
+						const instaUrlSearch = /instagram\.com\/([A-Z\d._]+)/i.exec(rawInsta);
+						const instaSearch = /@?([a-zA-Z\d._]+)/i.exec(rawInsta);
+						if (instaUrlSearch) {
+							insta = instaUrlSearch[1];
+						} else if (instaSearch) {
+							insta = instaSearch[1];
+						}
+					}
+					
 					records.push({
-						name: row[0].replace('\n', ' ').trim() || 'Unknown',
-						day: row[2].replace('\n', ' ').trim() || 'Unknown',
-						time: row[3].replace('\n', ' ').trim() || 'Unknown',
-						location: row[1].replace('\n', ' ').trim() || 'Unknown',
-						advisor: row[6].replace('\n', ' ').trim() || 'Unknown',
+						name: row[nameField].replace('\n', ' ').trim() || 'Unknown',
+						dayAndTime: row[dayAndTimeField].replace('\n', ' ').trim() || 'Unknown',
+						location: row[locationField].replace('\n', ' ').trim() || 'Unknown',
+						advisor: row[advisorField].replace('\n', ' ').trim() || 'Unknown',
 						instagram: insta.replace('@', '') || undefined,
-						desc: row[7].replace('\n', ' ').trim() || undefined,
+						desc: row[descField].replace('\n', ' ').trim() || undefined,
 					});
 				},
 				complete() {
@@ -79,13 +94,11 @@
 </script>
 
 <div class="flex items-center gap-2">
-	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}
-		>Auto Import</GradientButton
-	>
-	<InfoCircleOutline class="h-6 w-6 text-gray-700 dark:text-gray-400" />
-	<Tooltip
-		>Import clubs from a CSV file, clicking this button will open a menu with instructions</Tooltip
-	>
+	<GradientButton outline color="purpleToPink" on:click={() => (modalOpen = true)}>
+		Auto Import
+		<InfoCircleOutline class="ml-4 h-6 w-6 text-gray-700 dark:text-gray-400" />
+		<Tooltip>Import clubs from a CSV file, clicking this button will open a menu with instructions</Tooltip>
+	</GradientButton>
 </div>
 
 <Modal bind:open={modalOpen} size="lg" autoclose={false} title="Auto Import From CSV">
@@ -141,7 +154,7 @@
 				}}
 			/>
 		</div>
+		<Helper>Note: This will overwrite everything already in the table.</Helper>
 		<GradientButton type="submit" color="purpleToPink">Import</GradientButton>
-		<Helper>Note: This will overwrite everything already in the table</Helper>
 	</form>
 </Modal>

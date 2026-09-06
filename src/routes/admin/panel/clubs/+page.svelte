@@ -39,8 +39,7 @@
 			items={data.results}
 			generateNewItem={() => ({
 				name: 'New Club',
-				day: 'unknown',
-				time: 'unknown',
+				dayAndTime: 'unknown',
 				location: 'unknown',
 				advisor: 'unknown',
 			})}
@@ -58,8 +57,7 @@
 				<Table striped shadow class="min-w-[1024px] table-fixed">
 					<TableHead>
 						<TableHeadCell>Name</TableHeadCell>
-						<TableHeadCell>Day</TableHeadCell>
-						<TableHeadCell>Time</TableHeadCell>
+						<TableHeadCell>Day & Time</TableHeadCell>
 						<TableHeadCell>Location</TableHeadCell>
 						<TableHeadCell>Advisor</TableHeadCell>
 						<TableHeadCell>Instagram</TableHeadCell>
@@ -77,8 +75,9 @@
 										</Popover>
 									{/if}
 								</TableBodyCell>
-								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{item.day}</TableBodyCell>
-								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{item.time}</TableBodyCell>
+								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm"
+									>{item.dayAndTime}</TableBodyCell
+								>
 								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm"
 									>{item.location}</TableBodyCell
 								>
@@ -86,11 +85,13 @@
 									>{item.advisor}</TableBodyCell
 								>
 								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">
-									{#if item.instagram}
+									{#if item.instagram && item.instagram !== 'N/A'}
 										<ExternalLink
 											href="https://instagram.com/{item.instagram}"
 											text="@{item.instagram}"
 										/>
+									{:else}
+										<p class="font-bold text-gray-400 dark:text-gray-300">N/A</p>
 									{/if}
 								</TableBodyCell>
 								<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm align-top">

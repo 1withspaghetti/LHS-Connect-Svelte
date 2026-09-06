@@ -28,8 +28,7 @@
 			keys: [
 				{ name: 'name', weight: 5 },
 				{ name: 'desc', weight: 4 },
-				{ name: 'day', weight: 1 },
-				{ name: 'time', weight: 1 },
+				{ name: 'dayAndTime', weight: 1 },
 				{ name: 'location', weight: 1 },
 				{ name: 'advisor', weight: 1 },
 			],
@@ -52,8 +51,7 @@
 <Table striped shadow class="table-fixed">
 	<TableHead>
 		<TableHeadCell>Name</TableHeadCell>
-		<TableHeadCell>Day</TableHeadCell>
-		<TableHeadCell>Time</TableHeadCell>
+		<TableHeadCell>Day & Time</TableHeadCell>
 		<TableHeadCell>Location</TableHeadCell>
 		<TableHeadCell>Advisor</TableHeadCell>
 		<TableHeadCell>Instagram</TableHeadCell>
@@ -70,13 +68,14 @@
 						</Popover>
 					{/if}
 				</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.day}</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.time}</TableBodyCell>
+				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.dayAndTime}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.location}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">{club.advisor}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium max-w-sm">
-					{#if club.instagram}
+					{#if club.instagram && club.instagram !== 'N/A'}
 						<ExternalLink href="https://instagram.com/{club.instagram}" text="@{club.instagram}" />
+					{:else}
+						<p class="font-bold text-gray-400 dark:text-gray-300">N/A</p>
 					{/if}
 				</TableBodyCell>
 			</TableBodyRow>
